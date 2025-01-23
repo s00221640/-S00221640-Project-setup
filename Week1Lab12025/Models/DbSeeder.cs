@@ -29,10 +29,33 @@
                         LastName = "Lavin",
                         DOB = new DateTime(day: 11, month: 12, year: 1996)
                     },
-                    new User(),
-                    new User(),
-                    new User(),
-                    new User()
+                    new User
+                                        {
+                        FirstName = "John",
+                        MidName = "Frank",
+                        LastName = "Doe",
+                        DOB = new DateTime(day: 11, month: 12, year: 1996)
+                    },
+                    new User
+                                        {
+                        FirstName = "Jane",
+                        MidName = "Frank",
+                        LastName = "Doe",
+                        DOB = new DateTime(day: 11, month: 12, year: 1996)
+                    },
+                    new User()                    {
+                        FirstName = "Mark",
+                        MidName = "Frank",
+                        LastName = "Smith",
+                        DOB = new DateTime(day: 11, month: 12, year: 1996)
+                    },
+                    new User()                 
+                    {
+                        FirstName = "Mary",
+                        MidName = "Frank",
+                        LastName = "Smith",
+                        DOB = new DateTime(day: 11, month: 12, year: 1996)
+                    },
                     }
                 );
                 _ctx.SaveChanges();
