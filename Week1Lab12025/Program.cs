@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using Tracker.WebAPIClient;
+using Week1Lab12025.Models;
 
 namespace Week1Lab12025
 {
@@ -6,12 +8,24 @@ namespace Week1Lab12025
     {
         public static void Main(string[] args)
         {
+            
+
             var builder = WebApplication.CreateBuilder(args);
+
+            // Here we retrieve the connection string from the appsettings. json file
+            // and create the UserContext with the connection string
+            var dbConnectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+            ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            builder.Services.AddDbContext<UserContext>(options =>
+            //New Target assembly directive for migrations
+            options.UseSqlServer(dbConnectionString));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
