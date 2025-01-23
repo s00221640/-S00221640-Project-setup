@@ -25,7 +25,16 @@ namespace Week1Lab12025
 
             var app = builder.Build();
 
-
+            // Retrieve the user context from the services container
+            using (var scope = app.Services.CreateScope())
+            {
+                var _ctx = scope.ServiceProvider.GetRequiredService<UserContext>();
+                // Retrieve the IWebHostEnvironment for the Content Root even thoough we are not using the file system here
+                var hostEnvironment = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
+                // Create a new instance of the DbSeeder class and call the Seed method
+                DbSeeder dbSeeder = new DbSeeder(_ctx, hostEnvironment);
+                dbSeeder.Seed(); // seed method is in the dbseeder class
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
